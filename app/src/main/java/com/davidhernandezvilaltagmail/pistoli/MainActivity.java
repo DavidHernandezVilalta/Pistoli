@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         numero = 0;
     }
-
+    //new update 2.0
     @Override
     protected void onStart() {
         super.onStart();
@@ -28,4 +28,3 @@ public class MainActivity extends AppCompatActivity {
         numero = 2;
     }
 }
-//new update
