@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Pistoli</string>
+    <string name="texttoActivity">1</string>
+    <string name="textActivity2">2</string>
 </resources>
