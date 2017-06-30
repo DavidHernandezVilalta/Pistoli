@@ -19,6 +19,7 @@
         <activity android:name=".Main3Activity" />
         <activity android:name=".banderes" />
         <activity android:name=".Calculator"></activity>
+        <activity android:name="com.navarro.albert.baseactivynav.BaseActivity" />
     </application>
 
 </manifest>

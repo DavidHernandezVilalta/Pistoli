@@ -1,5 +1,6 @@
 package com.davidhernandezvilaltagmail.pistoli;
 
+import android.support.annotation.BoolRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,46 +50,191 @@ public class Calculator extends AppCompatActivity implements View.OnClickListene
         b8.setOnClickListener(this);
         b9.setOnClickListener(this);
         b10.setOnClickListener(this);
+        b11.setOnClickListener(this);
+        b12.setOnClickListener(this);
+        b13.setOnClickListener(this);
+        b14.setOnClickListener(this);
+        b15.setOnClickListener(this);
+        b16.setOnClickListener(this);
+        b17.setOnClickListener(this);
+        b18.setOnClickListener(this);
+        b19.setOnClickListener(this);
+    }
+    private Boolean hihazero = false, hihacoma = false, hihaop = false;
+    private String num1 = null, num2 = null, simbol = null;
+
+    private void guardarnumero(String s) {
+        if (s.equals("num1")) num1 = ops.getText().toString();
+        else num2 = ops.getText().toString();
+    }
+
+    private void opera(String s) {
+        if (!hihaop&&!s.equals("=")) {
+            if (string_valid()) {
+                guardarnumero("num1");
+                hihaop = true;
+                ops.setText(s);
+                simbol = s;
+            }
+        }
+        else {
+            if (string_valid()) {
+                if (!ops.getText().toString().equals(simbol)) {
+                    guardarnumero("num2");
+                    switch (simbol) {
+                        case "+":
+                            num1 = Long.toString(Long.parseLong(num1) + Long.parseLong(num2));
+                            break;
+                        case "-":
+                            num1 = Long.toString(Long.parseLong(num1) - Long.parseLong(num2));
+                            break;
+                        case "*":
+                            num1 = Long.toString(Long.parseLong(num1) * Long.parseLong(num2));
+                            break;
+                        case "/":
+                            num1 = Long.toString(Long.parseLong(num1) / Long.parseLong(num2));
+                            break;
+                    }
+                    res.setText(num1);
+                    ops.setText(s);
+                    simbol = s;
+                }
+            }
+        }
+    }
+
+    private Boolean string_valid() {
+        String str = ops.getText().toString();
+        if (str != null && str.length() > 0) return true;
+        else return false;
     }
 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.num0:
-                if (!ops.getText().toString().equals("0")) {
+                if (!ops.getText().toString().equals("0")&&!ops.getText().toString().equals(null)) {
                     ops.append("0");
+                    if (ops.getText().toString().equals("0")) hihazero = true;
                 }
                 break;
             case R.id.num1:
-                ops.append("1");
+                if (hihazero||hihaop) {
+                    if (ops.getText().toString().equals(null)||ops.getText().toString().equals(simbol)) ops.setText("1");
+                    else ops.append("1");
+                    hihazero = false;
+                }
+                else ops.append("1");
                 break;
             case R.id.num2:
-                ops.append("2");
+                if (hihazero||hihaop) {
+                    if (ops.getText().toString().equals(null)||ops.getText().toString().equals(simbol)) ops.setText("2");
+                    else ops.append("2");
+                    hihazero = false;
+                }
+                else ops.append("2");
                 break;
             case R.id.num3:
-                ops.append("3");
+                if (hihazero||hihaop) {
+                    if (ops.getText().toString().equals(null)||ops.getText().toString().equals(simbol)) ops.setText("3");
+                    else ops.append("3");
+                    hihazero = false;
+                }
+                else ops.append("3");
                 break;
             case R.id.num4:
-                ops.append("4");
+                if (hihazero||hihaop) {
+                    if (ops.getText().toString().equals(null)||ops.getText().toString().equals(simbol)) ops.setText("4");
+                    else ops.append("4");
+                    hihazero = false;
+                }
+                else ops.append("4");
                 break;
             case R.id.num5:
-                ops.append("5");
+                if (hihazero||hihaop) {
+                    if (ops.getText().toString().equals(null)||ops.getText().toString().equals(simbol)) ops.setText("5");
+                    else ops.append("5");
+                    hihazero = false;
+                }
+                else ops.append("5");
                 break;
             case R.id.num6:
-                ops.append("6");
+                if (hihazero||hihaop) {
+                    if (ops.getText().toString().equals(null)||ops.getText().toString().equals(simbol)) ops.setText("6");
+                    else ops.append("6");
+                    hihazero = false;
+                }
+                else ops.append("6");
                 break;
             case R.id.num7:
-                ops.append("7");
+                if (hihazero||hihaop) {
+                    if (ops.getText().toString().equals(null)||ops.getText().toString().equals(simbol)) ops.setText("7");
+                    else ops.append("7");
+                    hihazero = false;
+                }
+                else ops.append("7");
                 break;
             case R.id.num8:
-                ops.append("8");
+                if (hihazero||hihaop) {
+                    if (ops.getText().toString().equals(null)||ops.getText().toString().equals(simbol)) ops.setText("8");
+                    else ops.append("8");
+                    hihazero = false;
+                }
+                else ops.append("8");
                 break;
             case R.id.num9:
-                res.append("9");
-                break;
-            case R.id.borratot:
-                ops.setText("");
+                if (hihazero||hihaop) {
+                    if (ops.getText().toString().equals(null)||ops.getText().toString().equals(simbol)) ops.setText("9");
+                    else ops.append("9");
+                    hihazero = false;
+                }
+                else ops.append("9");
                 break;
 
+            case R.id.borratot:
+                ops.setText("");
+                hihacoma = false;
+                hihaop = false;
+                hihazero = false;
+                num1 = null;
+                res.setText("");
+                num2 = null;
+                break;
+            case R.id.coma:
+                if (!hihacoma) {
+                    ops.append(",");
+                    hihacoma = true;
+                }
+                break;
+            case R.id.borrar:
+                String str = ops.getText().toString();
+                if (string_valid()) {
+                    if (str.substring(str.length()-1, str.length()).equals(",")) hihacoma = false;
+                    str = str.substring(0, str.length() -1);
+                    ops.setText(str);
+                }
+                break;
+            case R.id.sum:
+                opera("+");
+                break;
+            case R.id.rest:
+                opera("-");
+                break;
+            case R.id.mult:
+                opera("*");
+                break;
+            case R.id.div:
+                opera("/");
+                break;
+            case R.id.xquadrat:
+                ops.append("^");
+                break;
+            case R.id.igual:
+                opera("=");
+                break;
+            case R.id.ans:
+                Log.v("MainActivity", num1);
+                if (!num1.equals(null)) ops.append(num1);
+                break;
         }
     }
 }

@@ -22,7 +22,7 @@
         />
     <Button
         android:id="@+id/button1"
-        android:text="Button 1"
+        android:text="Banderes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -30,7 +30,7 @@
 
     <Button
         android:layout_weight="1"
-        android:text="button 2"
+        android:text="trucada"
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,7 +40,7 @@
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Button 3"
+        android:text="Calculadora"
         />
     <Button
         android:layout_weight="1"
